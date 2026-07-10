@@ -22,6 +22,7 @@ from enum import Enum
 
 from superset.utils.backports import StrEnum
 
+# Default identifier used when no custom database user agent is configured.
 DEFAULT_USER_AGENT = "Apache Superset"
 
 NULL_STRING = "<NULL>"
