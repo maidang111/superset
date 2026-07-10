@@ -19,6 +19,8 @@ from werkzeug.local import LocalProxy
 
 # This package initializer wires up Superset's shared, application-wide
 # dependencies (the app factory and the extension proxies below).
+# Imports are intentionally ordered so the declarative base is configured
+# before any model class is imported.
 
 # SQLAlchemy 2.0 enables "Annotated Declarative" mapping, which inspects class
 # attribute type annotations and requires mapped attributes to use ``Mapped[...]``.
