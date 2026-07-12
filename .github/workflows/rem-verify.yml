@@ -1,0 +1,18 @@
+name: verify
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install tunnel deps from repo pins
+        run: pip install paramiko sshtunnel
+      - name: Verify ssh tunnel path
+        run: python -c "from sshtunnel import SSHTunnelForwarder; import paramiko; print('paramiko', paramiko.__version__)"
