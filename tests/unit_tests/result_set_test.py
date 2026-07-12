@@ -21,6 +21,8 @@ from datetime import datetime, timezone
 
 import numpy as np
 import pandas as pd
+import pyarrow as pa
+import pytest
 from numpy.core.multiarray import array
 from pytest_mock import MockerFixture
 
@@ -419,6 +421,16 @@ def test_uuid_column_is_stringified() -> None:
     assert all(value is None or isinstance(value, str) for value in df["uuid"].tolist())
 
 
+@pytest.mark.skipif(
+    not hasattr(pa, "uuid"),
+    reason=(
+        "The canonical pyarrow `uuid` extension type is only available in "
+        "pyarrow>=18. pyarrow is pinned to 16.0.0 to remediate "
+        "GHSA-5wvp-7f3h-6wmm, where uuid.UUID values are routed through the "
+        "stringification fallback instead (covered by "
+        "test_uuid_column_is_stringified)."
+    ),
+)
 def test_stringify_extension_columns() -> None:
     """
     ``stringify_extension_columns`` converts Arrow extension columns (e.g. the
@@ -427,8 +439,6 @@ def test_stringify_extension_columns() -> None:
     ``SupersetResultSet`` and the semantic-layers mapper.
     """
     import uuid
-
-    import pyarrow as pa
 
     first = uuid.UUID("f4787a4f-2541-4f8a-9b5e-1e2d3c4b5a6f")
     uuid_col = pa.ExtensionArray.from_storage(
