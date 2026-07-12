@@ -353,7 +353,7 @@ pyyaml==6.0.3
     # via
     #   apache-superset (pyproject.toml)
     #   apispec
-redis==4.5.3
+redis==4.5.4
     # via apache-superset (pyproject.toml)
 referencing==0.36.2
     # via
