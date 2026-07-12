@@ -86,7 +86,7 @@ cron-descriptor==1.4.5
     # via apache-superset (pyproject.toml)
 croniter==6.2.2
     # via apache-superset (pyproject.toml)
-cryptography==41.0.0
+cryptography==49.0.0
     # via
     #   -r requirements/base.in
     #   apache-superset (pyproject.toml)
@@ -295,7 +295,7 @@ prison==0.2.1
     # via flask-appbuilder
 prompt-toolkit==3.0.51
     # via click-repl
-pyarrow==11.0.0
+pyarrow==16.0.0
     # via
     #   -r requirements/base.in
     #   apache-superset (pyproject.toml)
@@ -449,7 +449,7 @@ tzlocal==5.4.4
     # via celery
 url-normalize==2.2.1
     # via requests-cache
-urllib3==2.0.5
+urllib3==2.7.0
     # via
     #   -r requirements/base.in
     #   requests
